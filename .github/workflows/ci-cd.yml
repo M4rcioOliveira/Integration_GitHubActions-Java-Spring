@@ -29,7 +29,7 @@ jobs:
         id: open_pr
         uses: rematocorp/open-pull-request-action@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.CREATE_PULL_TOKEN }}
           from-branch: feature/gitactions
           to-branch: master
           repository-owner: M4rcioOliveira
