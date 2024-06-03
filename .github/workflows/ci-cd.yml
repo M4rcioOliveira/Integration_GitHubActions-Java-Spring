@@ -27,6 +27,7 @@ jobs:
 
       - name: Open PR
         id: open_pr
+        if: github.ref != 'refs/heads/master'
         uses: rematocorp/open-pull-request-action@v1
         with:
           github-token: ${{ secrets.CREATE_PULL_TOKEN }}
