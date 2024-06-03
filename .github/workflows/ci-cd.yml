@@ -25,13 +25,15 @@ jobs:
       - name: Run tests
         run: mvn test
 
-      - name: Create Pull Request to master
-        if: success()
-        uses: peter-evans/create-pull-request@v4
+      - name: Open PR
+        id: open_pr
+        uses: rematocorp/open-pull-request-action@v1
         with:
-          commit-message: "Automated build and test successful"
-          branch: "ci-cd-branch"
-          base: "master"
-          title: "Automated Pull Request"
-          body: "Automated pull request generated after successful build and test"
-          token: ${{ secrets.CREATE_PULL_TOKEN }}
+          github-token: ${{ secrets.CREATE_PULL_TOKEN }}
+          from-branch: feature/gitactions
+          to-branch: master
+          repository-owner: M4rcioOliveira
+          repository: Integration_GitHubActions-Java-Spring
+
+      - name: Echo mergeable PR number
+        run: echo ${{ steps.open_pr.outputs.pull_number }}
